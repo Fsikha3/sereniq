@@ -25,7 +25,7 @@ export interface MealPlan {
 export const analyzeFoodMood = async (food: string): Promise<MoodAnalysis> => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `Analyze the impact of eating "${food}" on mental health. 
+    contents: `You are a nutritional psychiatry expert. Analyze the impact of eating "${food}" on mental health via the gut-brain axis.
     Focus on Serotonin, Dopamine, Cortisol, and Glucose Spike (0-10). 
     Provide a score from -10 to 10 for neurotransmitters/hormones.
     Include a brief summary and 2-3 healthier Indian alternatives if the food is unhealthy.
@@ -101,8 +101,8 @@ export const generateMealPlan = async (mood: string, challenge: string): Promise
 export const getDailyAffirmation = async (mood: string): Promise<string> => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `Generate a short, powerful, and calming mental health affirmation for someone feeling "${mood}". 
-    Keep it under 15 words.`,
+    contents: `Generate a short, powerful 1-sentence affirmation focused on the gut-brain connection and nutritional psychiatry for someone feeling "${mood}". 
+    Max 15 words.`,
   });
-  return response.text || "You are capable of handling whatever this day brings.";
+  return response.text || "Your gut is your second brain. Feed it right.";
 };
